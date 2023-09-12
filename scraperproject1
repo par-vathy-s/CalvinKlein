@@ -1,0 +1,50 @@
+import time
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+
+# Import ChromeDriverAutoInstaller and ensure the latest ChromeDriver is installed
+#from chromedriver_autoinstaller import install as install_chromedriver
+#install_chromedriver()
+
+
+# Initialize WebDriver
+chrome_driver_path = r"C:\Users\parva\Desktop\chromedriver-win64\chromedriver-win64\chromedriver.exe"
+driver = webdriver.Chrome()
+#driver = webdriver.Chrome(executable_path=chrome_driver_path)
+driver.maximize_window()
+
+
+
+
+
+
+# Set up Chrome WebDriver
+#driver = webdriver.Chrome("C:\Users\parva\Desktop\chromedriver-win64\chromedriver-win64\chromedriver.exe")
+
+# Define the URL to scrape
+url = "https://www.calvinklein.us/en/women/apparel/denim?ab=w_visnav_denim&sz=90&start=0"
+
+# Open the URL in the browser
+driver.get(url)
+
+# Wait for 5 seconds (you can adjust this time if needed)
+time.sleep(5)
+
+# Locate all elements with the specified XPath
+#elements = driver.find_elements_by_xpath('.//div[@class="product"]')
+
+# Extracting product description
+def get_desc():
+    try:
+        desc = driver.find_element(By.XPATH, './/div[@class="product"]').text
+    except Exception as e:
+        desc = 'Not available'
+    return desc
+
+
+# Iterate through the elements and print their text
+for element in elements:
+    print(element.text)
+
+# Close the browser
+driver.quit()
